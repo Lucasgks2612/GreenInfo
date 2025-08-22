@@ -6,33 +6,35 @@
     <title>GreenInfo - Cadastre-se</title>
     <link rel="stylesheet" href="cadastro.css">
 </head>
-
 <body>
-
-      <main>
+    <header class="main-header">
+        <nav>
+            <ul class="header-menu">
+                <li><a href="#">GreenInfo</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
         <div class="container">
             <form class="cadastro-form" id="cadastro-form">
                 <h2>Cadastro</h2>
                 <div class="input-group">
-                    <label for="name">Nome </label>
-                    <input type="text" id="name" placeholder="Digite seu nome"  required>
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" placeholder="Digite seu nome" required>
                 </div>
                 <div class="input-group">
                     <label for="email">Email</label>
-                    <input type="text" id="email" placeholder="Digite seu email " required>
+                    <input type="email" id="email" placeholder="Digite seu email" required>
                 </div>
                 <div class="input-group">
-                  <label for="password">Senha</label>
-                  <input type="password" id="password" placeholder="Digite sua senha" required>
-              </div>
-
-             
-                <button type="submit">Entrar</button>
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" placeholder="Digite sua senha" required>
+                </div>
+                <button type="submit">Cadastrar</button>
             </form>
-
-            <p>Já tem uma conta?  <a href="login.html ">Logar  </a></p>
+            <p>Já tem uma conta? <a href="login.html">Logar</a></p>
         </div>
-      </main>
-      <script src="cadastro.js"></script>
+    </main>
+    <script src="cadastro.js"></script>
 </body>
 </html>
