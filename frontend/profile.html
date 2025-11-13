@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - GreenInfo</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav>
+            <div class="logo">GreenInfo</div>
+            <ul class="header-menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="profile.html">Perfil</a></li>
+                <li><button id="logout-btn" style="background: #d32f2f; color: white; border: none; padding: 6px 16px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 16px;">Sair</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <div id="profile-container" class="loading">
+                <p>Carregando perfil...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de Confirmação de Exclusão -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <h2>Deletar Conta</h2>
+            <p>Tem certeza que deseja deletar sua conta? Esta ação é irreversível e todos os seus dados serão permanentemente removidos.</p>
+            <div class="modal-buttons">
+                <button class="btn-delete" id="confirm-delete">Deletar</button>
+                <button class="btn-cancel" id="cancel-delete">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Socket.io Client -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

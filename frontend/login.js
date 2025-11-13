@@ -1,21 +1,22 @@
-const form = document.getElementById('login-form');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
 
-      const response = await fetch('http://localhost:3000/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
+  const res = await fetch('http://localhost:3000/api/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  });
 
-      const result = await response.json();
+  const data = await res.json();
 
-      if (result.success) {
-        window.location.href = "index.html";
-      } else {
-        alert("Usuário ou senha incorretos");
-      }
+  if (data.success) {
+    localStorage.setItem('userId', data.userId);
+    localStorage.setItem('userName', data.name);
+    window.location.href = "index.html";
+  } else {
+    alert(data.message);
+  }
 });
