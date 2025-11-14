@@ -61,5 +61,7 @@ router.post('/cadastro', (req, res) => {
     });
   });
 });
-
+console.log('teste da silva');
 module.exports = router;
+
+//teste da silva

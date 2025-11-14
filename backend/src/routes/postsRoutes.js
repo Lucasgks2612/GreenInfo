@@ -18,7 +18,7 @@ router.get('/posts', (req, res, next) => {
   });
 });
 
-
+console.log('teste da silva');
 router.post('/posts', (req, res, next) => {
   if (!req.upload) {
     return next(new Error('Multer não foi inicializado (req.upload ausente).'));

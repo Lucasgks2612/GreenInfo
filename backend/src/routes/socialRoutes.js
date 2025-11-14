@@ -17,7 +17,7 @@ router.get('/search', (req, res) => {
     res.json({ success: true, users: results });
   });
 });
-
+console.log('teste da silva');
 router.post('/follow/:userId', (req, res) => {
   const currentUserId = req.header('X-User-Id');
   const targetUserId = req.params.userId;

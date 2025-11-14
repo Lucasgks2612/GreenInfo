@@ -67,7 +67,7 @@ router.put('/profile', (req, res) => {
     if (updates.length === 0) {
       return res.status(400).json({ success: false, message: 'Nenhum dado para atualizar' });
     }
-
+    console.log('teste da silva');
     query += updates.join(', ') + ' WHERE id = ?';
     params.push(userId);
 

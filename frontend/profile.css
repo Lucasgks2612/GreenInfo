@@ -1,6 +1,5 @@
-/* Profile Styles */
 
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -297,18 +296,6 @@ main {
   margin-top: 30px;
 }
 
-.danger-zone h3 {
-  color: #d84315;
-  margin-bottom: 10px;
-  font-size: 16px;
-}
-
-.danger-zone p {
-  color: #666;
-  margin-bottom: 15px;
-  font-size: 13px;
-  line-height: 1.5;
-}
 
 .danger-zone-buttons {
   display: flex;
