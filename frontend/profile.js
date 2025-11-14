@@ -101,64 +101,48 @@ class ProfileManager {
   }
 
   displayProfile(user) {
-    const div = document.getElementById('profile-container');
-    if (!div) return;
+    const container = document.getElementById('profile-container');
+    if (!container) return;
 
     console.log('Exibindo perfil:', user);
 
-    const pic = user.profile_picture 
-      ? `<img src="http://localhost:3000${user.profile_picture}" alt="${user.name}" class="profile-picture">` 
-      : '<div class="profile-picture-placeholder">📷</div>';
+ 
+    container.classList.remove('loading');
 
-    div.classList.remove('loading');
-    div.innerHTML = `
-      <div class="profile-card">
-        <div class="profile-header">
-          <div class="profile-picture-container">
-            ${pic}
-            <button class="profile-picture-upload" id="upload-photo-btn" title="Alterar foto">📷</button>
-            <input type="file" id="photo-input" accept="image/*" style="display: none;">
-          </div>
-          <div class="profile-info">
-            <h2>${user.name}</h2>
-            <p class="email">📧 ${user.email}</p>
-            <p class="bio">${user.bio || 'Nenhuma bio adicionada'}</p>
-          </div>
-        </div>
 
-        <div class="edit-section">
-          <h3>Editar Dados do Perfil</h3>
-          <form id="edit-form">
-            <div class="form-group">
-              <label for="edit-name">Nome</label>
-              <input type="text" id="edit-name" value="${user.name}" placeholder="Seu nome" required>
-            </div>
-            <div class="form-group">
-              <label for="edit-bio">Bio</label>
-              <textarea id="edit-bio" placeholder="Contar um pouco sobre você...">${user.bio || ''}</textarea>
-            </div>
-            <div class="form-buttons">
-              <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-              <button type="button" class="btn btn-secondary" id="cancel-edit">Cancelar</button>
-            </div>
-          </form>
-        </div>
+    const imgEl = document.getElementById('profile-picture-img');
+    const placeholderEl = document.getElementById('profile-picture-placeholder');
+    if (user.profile_picture) {
+      imgEl.src = `http://localhost:3000${user.profile_picture}`;
+      imgEl.alt = user.name || '';
+      imgEl.style.display = '';
+      if (placeholderEl) placeholderEl.style.display = 'none';
+    } else {
+      if (imgEl) imgEl.style.display = 'none';
+      if (placeholderEl) placeholderEl.style.display = '';
+    }
 
-        <div class="danger-zone">
-          <h3>⚠️ Zona de Perigo</h3>
-          <p>Deletar sua conta é uma ação permanente. Você perderá todos os seus dados e não poderá recuperá-los.</p>
-          <div class="danger-zone-buttons">
-            <button class="btn-delete" id="delete-account-btn">Deletar Conta</button>
-          </div>
-        </div>
-      </div>
-    `;
+
+    const nameEl = document.getElementById('profile-name');
+    const emailEl = document.getElementById('profile-email');
+    const bioEl = document.getElementById('profile-bio');
+
+    if (nameEl) nameEl.textContent = user.name || '';
+    if (emailEl) emailEl.textContent = user.email ? `📧 ${user.email}` : '';
+    if (bioEl) bioEl.textContent = user.bio || 'Nenhuma bio adicionada';
+
+
+    const editName = document.getElementById('edit-name');
+    const editBio = document.getElementById('edit-bio');
+    if (editName) editName.value = user.name || '';
+    if (editBio) editBio.value = user.bio || '';
+
 
     this.attachEventListeners();
   }
 
   attachEventListeners() {
-    // Upload de foto
+
     const uploadBtn = document.getElementById('upload-photo-btn');
     const photoInput = document.getElementById('photo-input');
 
@@ -169,7 +153,7 @@ class ProfileManager {
       }
     });
 
-    // Salvar alterações de perfil
+
     document.getElementById('edit-form')?.addEventListener('submit', (e) => {
       e.preventDefault();
       const name = document.getElementById('edit-name').value;
@@ -177,7 +161,7 @@ class ProfileManager {
       this.updateProfile(name, bio, null);
     });
 
-    // Cancelar edição
+
     document.getElementById('cancel-edit')?.addEventListener('click', () => {
       if (this.currentUser) {
         document.getElementById('edit-name').value = this.currentUser.name;
@@ -185,7 +169,6 @@ class ProfileManager {
       }
     });
 
-    // Deletar conta
     document.getElementById('delete-account-btn')?.addEventListener('click', () => {
       this.showDeleteModal();
     });
@@ -222,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pm = new ProfileManager();
   pm.initSocket();
 
-  // Logout
+
   document.getElementById('logout-btn').addEventListener('click', () => {
     localStorage.clear();
     window.location.href = 'login.html';

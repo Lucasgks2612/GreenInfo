@@ -10,21 +10,33 @@
     <header class="main-header">
         <nav class="nav-flex">
             <div class="logo">GreenInfo</div>
-            <ul class="header-menu">
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Configuração</a></li>
-                <li><a href="profile.html">Perfil</a></li>
-            </ul>
+                <ul class="header-menu">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="profile.html">Perfil</a></li>
+                </ul>
+                <div class="user-id-setter">
+                    <input id="user-id-input" type="text" placeholder="Seu user id" />
+                    <button id="set-user-btn">Salvar</button>
+                </div>
         </nav>
     </header>
     <main>
-        <div class="forum-list">
-            <div class="forum-item">
-                <h3>teste post</h3>
-                <p>teste da silva</p>
-                <button class="forum-btn">Entrar no fórum</button>
+            <div class="forum-list">
+                <section class="composer" id="post-composer">
+                    <h2>Criar novo post</h2>
+                    <input id="post-title" type="text" placeholder="Título (opcional)" />
+                    <textarea id="post-content" rows="4" placeholder="Compartilhe algo..."></textarea>
+                    <div class="composer-actions">
+                        <input id="post-image" type="file" accept="image/*" />
+                        <button id="submit-post">Publicar</button>
+                    </div>
+                </section>
+
+                <section class="feed" id="posts-feed">
+
+                </section>
             </div>
-        </div>
     </main>
+        <script src="index.js"></script>
 </body>
 </html>

@@ -21,16 +21,55 @@
     <div class="container">
         <main>
             <div id="profile-container" class="loading">
-                <p>Carregando perfil...</p>
+                <div class="profile-card" aria-live="polite">
+                    <div class="profile-header">
+                        <div class="profile-picture-container">
+                            <div id="profile-picture-placeholder" class="profile-picture-placeholder">📷</div>
+                            <img id="profile-picture-img" class="profile-picture" src="" alt="" style="display:none;">
+                            <button class="profile-picture-upload" id="upload-photo-btn" title="Alterar foto" type="button">+</button>
+                            <input type="file" id="photo-input" accept="image/*" style="display: none;">
+                        </div>
+
+                        <div class="profile-info">
+                            <h2 id="profile-name">Carregando da silva</h2>
+                            <p id="profile-email" class="email"></p>
+                            <p id="profile-bio" class="bio"></p>
+                        </div>
+                    </div>
+
+                    <div class="edit-section">
+                        <h3>Editar Dados do Perfil</h3>
+                        <form id="edit-form">
+                            <div class="form-group">
+                                <label for="edit-name">Nome</label>
+                                <input type="text" id="edit-name" value="" placeholder="Seu nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-bio">Bio</label>
+                                <textarea id="edit-bio" placeholder="Digite sobre você"></textarea>
+                            </div>
+                            <div class="form-buttons">
+                                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                                <button type="button" class="btn btn-secondary" id="cancel-edit">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="danger-zone">
+                        <p>Cuidado, essa ação não é irreversível</p>
+                        <div class="danger-zone-buttons">
+                            <button class="btn-delete" id="delete-account-btn">Deletar Conta</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
 
-    <!-- Modal de Confirmação de Exclusão -->
     <div id="delete-modal" class="modal">
         <div class="modal-content">
             <h2>Deletar Conta</h2>
-            <p>Tem certeza que deseja deletar sua conta? Esta ação é irreversível e todos os seus dados serão permanentemente removidos.</p>
+            <p>Tem certeza? Esta ação é irreversível.</p>
             <div class="modal-buttons">
                 <button class="btn-delete" id="confirm-delete">Deletar</button>
                 <button class="btn-cancel" id="cancel-delete">Cancelar</button>
@@ -38,7 +77,6 @@
         </div>
     </div>
 
-    <!-- Socket.io Client -->
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script src="profile.js"></script>
 </body>

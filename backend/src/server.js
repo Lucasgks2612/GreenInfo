@@ -9,6 +9,7 @@ const connection = require('./db_config');
 
 const authRoutes = require('./routes/authRoutes');
 const profileRoutes = require('./routes/profileRoutes');
+const postsRoutes = require('./routes/postsRoutes');
 
 const uploadDir = path.join(__dirname, '../uploads/profiles');
 if (!fs.existsSync(uploadDir)) {
@@ -56,6 +57,7 @@ app.use('/api', (req, res, next) => {
   next();
 });
 app.use('/api', profileRoutes);
+app.use('/api', postsRoutes);
 
 const port = 3000;
 const connectedUsers = {};
@@ -130,6 +132,15 @@ io.on('connection', (socket) => {
       });
       console.log(`Usuário ${userId} desconectado`);
     }
+  });
+});
+
+app.use((err, req, res, next) => {
+  console.error('ERRO CAPTURADO:', err);
+  res.status(500).json({
+    success: false,
+    message: 'Erro interno no servidor',
+    details: err.message
   });
 });
 
